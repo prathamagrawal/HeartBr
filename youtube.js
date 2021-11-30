@@ -102,7 +102,10 @@ app.get("/steps", async (req, res) => {
                 for (const points of dataset.dataset) {
                     //console.log(points);
                     for (const value of points.point) {
-                        console.log(value)
+                        //console.log(value)
+                        for (const i of value.value) {
+                            console.log(i);
+                        }
                     }
                 }
             }
