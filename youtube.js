@@ -8,20 +8,13 @@ const urlParse = require("url-parse");
 const queryParse = require("query-string");
 const bodyParser = require("body-parser");
 const axios = require("axios"); 
-
-var today = new Date();
-var dd = String(today.getDate()).padStart(2, '0');
-var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-var yyyy = String(today.getYear());
-var yesterday = new Date()
-
-today = (mm) + '/' + (dd) + '/' + (yyyy);
-yesterday = (mm-2)+ '/' + (dd) + '/' + (yyyy);
-var todayDate = new Date(today);
-var todayresult = todayDate.getTime();
-var yesterdayDate = new Date(yesterday);
-var yesterdayresult = yesterdayDate.getTime();
-
+var date = new Date(); // today's date and time in ISO format
+var today = Date.parse(date);
+var d = new Date();
+d.setDate(d.getDate() - 1);
+var yesterday=Date.parse(d);
+console.log(today);
+console.log(yesterday);
 // 588017612151-kjdgmot8rlumnfrl8fo9nto306moad08.apps.googleusercontent.com
 // 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
 
@@ -86,9 +79,9 @@ app.get("/steps", async (req, res) => {
                     "aggregateBy": [{
                             "dataTypeName": "com.google.heart_minutes"
                         }],
-                    bucketByTime: {durationMillis: 604800000 },
-                    startTimeMillis: 1638031173505,
-                    endTimeMillis: 1638117573505,
+                    bucketByTime: {durationMillis: 86400000 },
+                    startTimeMillis: yesterday,
+                    endTimeMillis: today,
                 },
         });
 
