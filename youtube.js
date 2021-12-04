@@ -13,8 +13,6 @@ var today = Date.parse(date);
 var d = new Date();
 d.setDate(d.getDate() - 1);
 var yesterday=Date.parse(d);
-console.log(today);
-console.log(yesterday);
 // 588017612151-kjdgmot8rlumnfrl8fo9nto306moad08.apps.googleusercontent.com
 // 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
 
@@ -108,4 +106,3 @@ app.get("/steps", async (req, res) => {
 });
 
 app.listen(port, () => console.log(`GOOGLE FIT IS LISTENING ON PORT ${port}`));
-
