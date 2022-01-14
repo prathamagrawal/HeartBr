@@ -11,7 +11,7 @@ const axios = require("axios");
 var date = new Date(); // today's date and time in ISO format
 var today = Date.parse(date);
 var d = new Date();
-d.setDate(d.getDate() - 1);
+d.setDate(d.getDate() - 2);
 var yesterday=Date.parse(d);
 // 588017612151-kjdgmot8rlumnfrl8fo9nto306moad08.apps.googleusercontent.com
 // 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
@@ -60,8 +60,6 @@ app.get("/steps", async (req, res) => {
         "http://localhost:1234/steps"
     );
     const tokens = await oauth2Client.getToken(code);
-
-        res.send("Hello");
         
         let stepArray = [];
 
@@ -95,7 +93,15 @@ app.get("/steps", async (req, res) => {
                     for (const value of points.point) {
                         //console.log(value)
                         for (const i of value.value) {
-                            console.log(i);
+                            var test=i.intVal;
+                            console.log(test);
+                            if(test>10){
+                                console.log("Fit");
+                                res.send("Hello");
+                            }
+                            else{
+                                res.send("<h1>The Patient is Unfit !!</h1>");
+                            }
                         }
                     }
                 }
