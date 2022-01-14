@@ -81,6 +81,8 @@ app.get("/steps", async (req, res) => {
                 },
         });
 
+        fit="fit.html"
+
         stepArray = result.data.bucket
         } catch (e) {
             console.log(e)
@@ -95,12 +97,13 @@ app.get("/steps", async (req, res) => {
                         for (const i of value.value) {
                             var test=i.intVal;
                             console.log(test);
-                            if(test>10){
+                            if(test<500){
                                 console.log("Fit");
-                                res.send("Hello");
+                                res.send('Hello');
                             }
-                            else{
-                                res.send("<h1>The Patient is Unfit !!</h1>");
+                            if (test>500){
+                                console.log("Unfit");
+                                res.send('Unfit');
                             }
                         }
                     }
