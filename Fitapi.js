@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const path = require('path');
 const port = 1234;
 const { google } = require("googleapis");
 const request = require("request");
@@ -11,7 +12,7 @@ const axios = require("axios");
 var date = new Date(); // today's date and time in ISO format
 var today = Date.parse(date);
 var d = new Date();
-d.setDate(d.getDate() - 2);
+d.setDate(d.getDate() - 30);
 var yesterday=Date.parse(d);
 // 588017612151-kjdgmot8rlumnfrl8fo9nto306moad08.apps.googleusercontent.com
 // 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
@@ -80,9 +81,6 @@ app.get("/steps", async (req, res) => {
                     endTimeMillis: today,
                 },
         });
-
-        fit="fit.html"
-
         stepArray = result.data.bucket
         } catch (e) {
             console.log(e)
@@ -97,14 +95,7 @@ app.get("/steps", async (req, res) => {
                         for (const i of value.value) {
                             var test=i.intVal;
                             console.log(test);
-                            if(test<500){
-                                console.log("Fit");
-                                res.send('Hello');
-                            }
-                            if (test>500){
-                                console.log("Unfit");
-                                res.send('Unfit');
-                            }
+                            res.sendFile(path.join(__dirname, 'pages/fit.html'));
                         }
                     }
                 }
