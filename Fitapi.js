@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const path = require('path');
-const port = 1234;
+const port = 1234; 
 const { google } = require("googleapis");
 const request = require("request");
 const cors = require("cors");
@@ -12,7 +12,7 @@ const axios = require("axios");
 var date = new Date(); // today's date and time in ISO format
 var today = Date.parse(date);
 var d = new Date();
-d.setDate(d.getDate() - 30);
+d.setDate(d.getDate() - 5);
 var yesterday=Date.parse(d);
 // 588017612151-kjdgmot8rlumnfrl8fo9nto306moad08.apps.googleusercontent.com
 // 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
@@ -95,7 +95,12 @@ app.get("/steps", async (req, res) => {
                         for (const i of value.value) {
                             var test=i.intVal;
                             console.log(test);
-                            res.sendFile(path.join(__dirname, 'pages/fit.html'));
+                            if(test>20){
+                                res.sendFile(path.join(__dirname, 'pages/fit.html'));
+                            }
+                            else{
+                                res.sendFile(path.join(__dirname, 'pages/unfit.html'));
+                            }
                         }
                     }
                 }
