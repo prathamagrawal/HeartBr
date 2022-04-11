@@ -108,6 +108,6 @@ app.get("/steps", async (req, res) => {
         } catch (e) {
             console.log(e)
         }
-});t
+});
 
 app.listen(port, () => console.log(`GOOGLE FIT IS LISTENING ON PORT ${port}`));
